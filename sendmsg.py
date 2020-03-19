@@ -4,8 +4,8 @@ import json
 import sensordata
 import time
 
-project_id = "iotedu-tutorial-271214" # enter your project id here
-topic_name = "my-topic" # enter the name of the topic that you created
+project_id = "<your prject id>" # enter your project id here
+topic_name = "<topic name>" # enter the name of the topic that you created
 
 publisher = pubsub_v1.PublisherClient()
 topic_path = publisher.topic_path(project_id, topic_name)
@@ -34,7 +34,7 @@ while True:
         topic_path, data=(json.dumps(data)).encode("utf-8")) # data must be a bytestring.
     # Publish failures shall be handled in the callback function.
     future.add_done_callback(get_callback(future, data))
-    time.sleep(57)
+    time.sleep(57) # 1 min delay
 # Wait for all the publish futures to resolve before exiting.
 while futures:
     time.sleep(5)
